@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import pickle
 # Read the dataset
 
-df = pd.read_csv("../fake reviews dataset udated.csv")
+df = pd.read_csv("./fake reviews dataset udated.csv")
 
 # Drop unnecessary columns
 df = df.drop(['category', 'rating'], axis=1)
@@ -21,7 +21,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 
-with open('../finalized_model.sav','rb') as file:
+with open('./finalized_model.sav','rb') as file:
     model=pickle.load(file)
 
 def preprocess_text(text):
