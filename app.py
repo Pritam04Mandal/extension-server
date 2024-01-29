@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,request,jsonify
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfTransformer
 import pickle
@@ -16,8 +16,11 @@ df = df.drop_duplicates()
 
 # Convert text to lowercase
 df['processed_text'] = df['text_'].apply(lambda x: x.lower())
-tfidf = TfidfVectorizer(max_features=3000, lowercase=True, analyzer='word',)
+tfidf = TfidfTransformer(max_features=3000, lowercase=True, analyzer='word',)
 X = tfidf.fit_transform(df['processed_text']).toarray()
+
+with open('finalized_model.sav','rb') as file:
+    model=pickle.load(file)
 
 def preprocess_text(text):
     processed_text = text.lower()
