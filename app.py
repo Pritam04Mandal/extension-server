@@ -5,7 +5,7 @@ import pickle
 
 app = Flask(__name__)
 
-ilePath = './fake reviews dataset udated.csv'
+filePath = './fake reviews dataset udated.csv'
 df = pd.read_csv(filePath)
 
 # Drop unnecessary columns
